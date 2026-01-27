@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<!-- Target .NET 8 with Windows 10 APIs -->
+		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<!-- Minimum supported OS version for Windows Hello -->
+		<SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<WindowsSdkSupportedTargetPlatformVersion Include="10.0.26100.1" WindowsSdkPackageVersion="10.0.26100.1" MinimumNETVersion="6.0" />
+		<SdkSupportedTargetPlatformVersion Include="10.0.26100.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.2" />
+	  <PackageReference Include="WPF.ColorPicker" Version="5.0.0.1" />
+	</ItemGroup>
+
+</Project>

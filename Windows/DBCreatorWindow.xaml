@@ -1,0 +1,16 @@
+﻿<Window x:Class="FinalYearProject.Windows.DbCreatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Database Creator"
+        Height="200" Width="350"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Button Content="Create Secure DB"
+                Width="200"
+                Height="40"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="CreateTable_Click"/>
+    </Grid>
+</Window>
