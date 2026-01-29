@@ -3,60 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ScaleLock"
         Height="720" Width="1280"
-        WindowStartupLocation="CenterScreen"
-        Background="#4F4F4F">
+        WindowStartupLocation="CenterScreen">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" />
-        </Grid.ColumnDefinitions>
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#5A6E7F" Offset="0.0"/>
+                    <GradientStop Color="#2C3E50" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
 
-        <Grid Grid.Column="0">
-            <Border Background="#DDD" Margin="40" CornerRadius="10">
-                <TextBlock Text="Image of Mascot Here"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="20"
-                           FontWeight="Bold"
-                           Foreground="White"/>
-            </Border>
-
-        </Grid>
-
-        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="Username"
-                       FontSize="18"
-                       Foreground="White"
-                       Margin="0 0 0 5"/>
-            <TextBox x:Name="UsernameBox"
-                     Width="377" Height="43"
-                     Margin="0 0 0 10"/>
-
-            <TextBlock Text="Password"
-                       FontSize="18"
-                       Foreground="White"
-                       Margin="0 0 0 5"/>
-            <PasswordBox x:Name="PasswordBox"
-                         Width="377" Height="43"
-                         Margin="0 0 0 20"/>
-
-            <Button Content="Login"
-                    Width="369" Height="62"
-                    Background="#2196F3"
-                    FontSize="20"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    Margin="0 0 0 10"
-                    Click="Login_Click"/>
-
-            <Button Content="Register"
-                    Width="369" Height="62"
-                    Background="#F48FB1"
-                    FontSize="20"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    Click="CreateAccount_Click"/>
-        </StackPanel>
+        <DockPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Username" FontSize="18" Foreground="White" Margin="0 0 0 5"/>
+                <TextBox x:Name="UsernameBox" FontSize="24" Width="377" Height="43" Margin="0 0 0 10"/>
+                <TextBlock Text="Password" FontSize="18" Foreground="White" Margin="0 0 0 5"/>
+                <PasswordBox x:Name="PasswordBox" Width="377" Height="43" Margin="0 0 0 20"/>
+                <Button Content="Login" Width="369" Height="62" Background="#2196F3"
+                        FontSize="20" Foreground="White" FontWeight="Bold"
+                        Margin="0 0 0 10" Click="Login_Click"/>
+                <Button Content="Register" Width="369" Height="62" Background="#F48FB1"
+                        FontSize="20" Foreground="White" FontWeight="Bold"
+                        Click="CreateAccount_Click"/>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </Window>

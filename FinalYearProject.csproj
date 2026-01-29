@@ -16,11 +16,18 @@
 
 	<ItemGroup>
 	  <Folder Include="Models\" />
+	  <Folder Include="Windows\Assets\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.2" />
 	  <PackageReference Include="WPF.ColorPicker" Version="5.0.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Windows\Assets\mascot.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

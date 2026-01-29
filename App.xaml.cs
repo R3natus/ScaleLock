@@ -8,8 +8,9 @@ namespace FinalYearProject
         {
             base.OnStartup(e);
 
-            var hello = new HelloTestWindow();
-            hello.Show();
+            var loginScreen = new Windows.LoginScreen();
+            loginScreen.Show();
         }
+
     }
 }
