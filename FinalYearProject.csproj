@@ -10,6 +10,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Fonts\SF Pro Display Regular.OTF" />
+	  <None Remove="Fonts\SF Pro.OTF" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<WindowsSdkSupportedTargetPlatformVersion Include="10.0.26100.1" WindowsSdkPackageVersion="10.0.26100.1" MinimumNETVersion="6.0" />
 		<SdkSupportedTargetPlatformVersion Include="10.0.26100.1" />
 	</ItemGroup>
@@ -21,7 +26,13 @@
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.2" />
+	  <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.2" />
+	  <PackageReference Include="System.Data.SQLite.Core" Version="1.0.119" />
 	  <PackageReference Include="WPF.ColorPicker" Version="5.0.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Fonts\SF Pro.OTF" />
 	</ItemGroup>
 
 	<ItemGroup>

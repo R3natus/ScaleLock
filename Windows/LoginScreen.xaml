@@ -9,24 +9,31 @@
         <Rectangle>
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#5A6E7F" Offset="0.0"/>
-                    <GradientStop Color="#2C3E50" Offset="1.0"/>
+                    <GradientStop Color="#8E2DE2" Offset="-0.7"/>
+                    <GradientStop Color="#1E005C" Offset="1.0"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
 
         <DockPanel>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="Username" FontSize="18" Foreground="White" Margin="0 0 0 5"/>
+                <!-- Username -->
+                <TextBlock Text="Username" FontSize="18" Foreground="White" Margin="0 0 0 5" Width="81"/>
                 <TextBox x:Name="UsernameBox" FontSize="24" Width="377" Height="43" Margin="0 0 0 10"/>
-                <TextBlock Text="Password" FontSize="18" Foreground="White" Margin="0 0 0 5"/>
-                <PasswordBox x:Name="PasswordBox" Width="377" Height="43" Margin="0 0 0 20"/>
-                <Button Content="Login" Width="369" Height="62" Background="#2196F3"
+
+                <!-- Password -->
+                <TextBlock Text="Password" FontSize="18" Foreground="White" Margin="0 0 0 5" Width="76"/>
+                <PasswordBox x:Name="PasswordBox" FontSize="24" Width="377" Height="43" Margin="0 0 0 5"/>
+
+                <!-- Login Button (Green) -->
+                <Button Content="Login" Width="369" Height="62" Background="#7A66BB"
                         FontSize="20" Foreground="White" FontWeight="Bold"
                         Margin="0 0 0 10" Click="Login_Click"/>
-                <Button Content="Register" Width="369" Height="62" Background="#F48FB1"
+                <Button Content="Register" Width="369" Height="62" Background="#66BB6A"
                         FontSize="20" Foreground="White" FontWeight="Bold"
-                        Click="CreateAccount_Click"/>
+                        Click="Register_Click"/>
+
+                <!-- Register Button (Green) -->
             </StackPanel>
         </DockPanel>
     </Grid>
