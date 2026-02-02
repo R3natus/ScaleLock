@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Windows.Security.Credentials.UI;
 
 namespace FinalYearProject.Windows
 {
@@ -30,7 +31,7 @@ namespace FinalYearProject.Windows
             }
         }
 
-        private void CreateAccount_Click(object sender, RoutedEventArgs e)
+        private async void CreateAccount_Click(object sender, RoutedEventArgs e)
         {
             string username = NewUsernameBox.Text.Trim();
             string password = NewPasswordBox.Password;
@@ -46,7 +47,13 @@ namespace FinalYearProject.Windows
                 string.IsNullOrWhiteSpace(secretAnswer) ||
                 secretQuestion == null)
             {
-                MessageBox.Show("Please fill in all fields correctly.");
+                MessageBox.Show("Please fill in all fields as instructed!");
+                return;
+            }
+
+            if (username == password)
+            {
+                MessageBox.Show("Username and password cannot be the same!");
                 return;
             }
 
@@ -80,8 +87,18 @@ namespace FinalYearProject.Windows
                     try
                     {
                         command.ExecuteNonQuery();
-                        MessageBox.Show("Account created successfully!");
-                        this.Close();
+
+                        var result = await UserConsentVerifier.RequestVerificationAsync("Verify with Windows Hello to finish account creation");
+
+                        if (result == UserConsentVerificationResult.Verified)
+                        {
+                            MessageBox.Show("Account created successfully! Please try logging in!");
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please complete the verification here!");
+                        }
                     }
                     catch (SQLiteException ex)
                     {
@@ -90,10 +107,10 @@ namespace FinalYearProject.Windows
                 }
             }
         }
+
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
     }
 }

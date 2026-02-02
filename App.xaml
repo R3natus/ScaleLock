@@ -2,8 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
-        <Style TargetType="{x:Type Control}">
-            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#SF Pro Display Regular"/>
+
+        <Style TargetType="Control">
+            <Setter Property="FontFamily" 
+                    Value="pack://application:,,,/FinalYearProject;component/Fonts/#SF Pro Display Regular"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" 
+                    Value="pack://application:,,,/FinalYearProject;component/Fonts/#SF Pro Display Regular"/>
         </Style>
     </Application.Resources>
 </Application>

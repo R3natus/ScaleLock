@@ -9,7 +9,7 @@
         <Rectangle>
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#8E2DE2" Offset="-0.7"/>
+                    <GradientStop Color="#09001C" Offset="0.9"/>
                     <GradientStop Color="#1E005C" Offset="1.0"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
@@ -26,10 +26,10 @@
                 <PasswordBox x:Name="PasswordBox" FontSize="24" Width="377" Height="43" Margin="0 0 0 5"/>
 
                 <!-- Login Button (Green) -->
-                <Button Content="Login" Width="369" Height="62" Background="#7A66BB"
+                <Button Content="Login" Width="369" Height="62" Background="#070E59"
                         FontSize="20" Foreground="White" FontWeight="Bold"
                         Margin="0 0 0 10" Click="Login_Click"/>
-                <Button Content="Register" Width="369" Height="62" Background="#66BB6A"
+                <Button Content="Register" Width="369" Height="62" Background="#1E278A"
                         FontSize="20" Foreground="White" FontWeight="Bold"
                         Click="Register_Click"/>
 

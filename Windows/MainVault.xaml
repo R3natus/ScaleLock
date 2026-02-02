@@ -1,0 +1,148 @@
+﻿<Window x:Class="FinalYearProject.Windows.MainVault"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ScaleLock Vault"
+        Height="800" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#0C0512">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="0" Margin="15" CornerRadius="20" Background="#1A1A2E">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="220">
+
+                <!-- Add New button -->
+                <Border CornerRadius="12" Background="#00C853" Margin="0,0,0,40">
+                    <Button Content="+ Add New"
+                            Foreground="White"
+                            FontSize="25"
+                            Height="55"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Click="AddNew_Click"/>
+                </Border>
+
+                <Button Content="Logins"
+                        Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50"
+                        HorizontalAlignment="Stretch"
+                        Margin="0,0,0,15"
+                        BorderThickness="0"
+                        Click="Logins_Click"/>
+
+                <Button Content="Bookmarks"
+                        Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50"
+                        HorizontalAlignment="Stretch"
+                        Margin="0,0,0,15"
+                        BorderThickness="0"
+                        Click="Bookmarks_Click"/>
+
+                <Button Content="Safenotes"
+                        Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50"
+                        HorizontalAlignment="Stretch"
+                        Margin="0,0,0,15"
+                        BorderThickness="0"
+                        Click="Safenotes_Click"/>
+
+                <Button Content="Password Generator"
+                        Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50"
+                        HorizontalAlignment="Stretch"
+                        Margin="0,0,0,15"
+                        BorderThickness="0"
+                        Click="PasswordGenerator_Click"/>
+
+                <Button Content="Help"
+                        Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50"
+                        BorderThickness="0"
+                        Click="Help_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <DockPanel Grid.Column="1" Margin="15">
+            <!-- Top bar -->
+            <Border DockPanel.Dock="Top" Background="#1A1A2E" CornerRadius="15" Height="70" Padding="10" Margin="0,0,0,15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Search bar only -->
+                    <TextBox Grid.Column="0"
+                             Height="40"
+                             Margin="10,0,10,0"
+                             FontSize="16"
+                             VerticalAlignment="Center"
+                             Padding="10"
+                             Background="#2A2A40"
+                             Foreground="White"
+                             BorderThickness="0"
+                             Text="Search your vault..." TextChanged="TextBox_TextChanged"/>
+                </Grid>
+            </Border>
+
+            <!-- Vault content -->
+            <Grid>
+                <Border CornerRadius="20" Padding="20" Background="#1A1A2E">
+                    <!-- Vault Items Panel -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="VaultItemsPanel">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="12" Background="#2A2A40" Margin="10" Padding="15">
+                                        <Button Content="{Binding Title}"
+                                                FontSize="20"
+                                                Foreground="White"
+                                                Background="Transparent"
+                                                BorderThickness="0"
+                                                Click="VaultCard_Click"/>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+
+                <!-- Floating Help button -->
+                <Button Content="?"
+                        Width="60" Height="60"
+                        Background="#00C853"
+                        Foreground="White"
+                        FontSize="28"
+                        FontWeight="Bold"
+                        BorderThickness="0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="20"
+                        Click="Help_Click"/>
+            </Grid>
+        </DockPanel>
+
+        <!-- Username button with dropdown menu -->
+        <Border Grid.Column="1" CornerRadius="12" Background="#00C853"
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Margin="0,20,40,0" Width="200" Height="55">
+            <Button Content="{Binding Username}"
+                    Foreground="White"
+                    FontSize="18"
+                    HorizontalAlignment="Stretch"
+                    BorderThickness="0"
+                    Background="Transparent">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Log Out" Click="Logout_Click"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+        </Border>
+    </Grid>
+</Window>

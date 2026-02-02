@@ -4,6 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using Windows.Security.Credentials.UI;
 
 namespace FinalYearProject.Windows
 {
@@ -29,7 +30,7 @@ namespace FinalYearProject.Windows
             }
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameBox.Text.Trim();
             string password = PasswordBox.Password;
@@ -45,8 +46,21 @@ namespace FinalYearProject.Windows
 
                     if (result != null && result.ToString() == HashPassword(password))
                     {
-                        MessageBox.Show("Login successful!");
-                        // TODO: open vault window here
+                        var helloResult = await UserConsentVerifier.RequestVerificationAsync("Verify with Windows Hello to log in");
+
+                        if (helloResult == UserConsentVerificationResult.Verified)
+                        {
+                            MessageBox.Show("Login successful!");
+
+                            // ✅ Close LoginScreen and open MainVault with the authenticated username
+                            MainVault vaultWindow = new MainVault(username);
+                            vaultWindow.Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Windows Hello verification aborted!");
+                        }
                     }
                     else
                     {
