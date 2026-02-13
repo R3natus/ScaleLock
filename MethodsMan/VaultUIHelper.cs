@@ -7,7 +7,10 @@ namespace FinalYearProject.MethodsMan
         public static void ShowEntryDetails(VaultEntry entry)
         {
             MessageBox.Show(
-                $"Title: {entry.Title}\nUsernameHash: {entry.Username}\nPasswordHash: {entry.PasswordHash}\nNotes: {entry.Notes}",
+                $"Title: {entry.Title}\n" +
+                $"Username (Encrypted): {entry.UsernameEncrypted}\n" +
+                $"Password (Encrypted): {entry.PasswordEncrypted}\n" +
+                $"Notes (Encrypted): {entry.NotesEncrypted}",
                 "Vault Entry"
             );
         }

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.IO;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows;
+using FinalYearProject.MethodsMan;
 
 namespace FinalYearProject.Windows
 {
@@ -53,7 +52,6 @@ namespace FinalYearProject.Windows
                 Directory.CreateDirectory(appDataPath);
             }
 
-            // Use .DB extension instead of .sqlite
             string dbFile = Path.Combine(appDataPath, $"{CurrentUser}_DB.DB");
 
             if (!File.Exists(dbFile))
@@ -66,9 +64,9 @@ namespace FinalYearProject.Windows
                     string tableCmd = @"CREATE TABLE VaultEntries (
                                             Id INTEGER PRIMARY KEY AUTOINCREMENT,
                                             Title TEXT NOT NULL,
-                                            UsernameHash TEXT NOT NULL,
-                                            PasswordHash TEXT NOT NULL,
-                                            Notes TEXT
+                                            UsernameEncrypted TEXT NOT NULL,
+                                            PasswordEncrypted TEXT NOT NULL,
+                                            NotesEncrypted TEXT
                                         );";
                     using (var cmd = new SQLiteCommand(tableCmd, conn))
                     {
@@ -77,20 +75,21 @@ namespace FinalYearProject.Windows
                 }
             }
 
-            // Hash both username and password
-            string hashedUsername = HashString(username);
-            string hashedPassword = HashString(password);
+            // Encrypt values before saving
+            string encryptedUsername = VaultSecurityHelper.Encrypt(username, "ScaleLockSecretKey");
+            string encryptedPassword = VaultSecurityHelper.Encrypt(password, "ScaleLockSecretKey");
+            string encryptedNotes = VaultSecurityHelper.Encrypt(notes, "ScaleLockSecretKey");
 
             using (var conn = new SQLiteConnection($"Data Source={dbFile};Version=3;"))
             {
                 conn.Open();
-                string insertCmd = "INSERT INTO VaultEntries (Title, UsernameHash, PasswordHash, Notes) VALUES (@title, @usernameHash, @passwordHash, @notes)";
+                string insertCmd = "INSERT INTO VaultEntries (Title, UsernameEncrypted, PasswordEncrypted, NotesEncrypted) VALUES (@title, @usernameEnc, @passwordEnc, @notesEnc)";
                 using (var cmd = new SQLiteCommand(insertCmd, conn))
                 {
                     cmd.Parameters.AddWithValue("@title", title);
-                    cmd.Parameters.AddWithValue("@usernameHash", hashedUsername);
-                    cmd.Parameters.AddWithValue("@passwordHash", hashedPassword);
-                    cmd.Parameters.AddWithValue("@notes", notes);
+                    cmd.Parameters.AddWithValue("@usernameEnc", encryptedUsername);
+                    cmd.Parameters.AddWithValue("@passwordEnc", encryptedPassword);
+                    cmd.Parameters.AddWithValue("@notesEnc", encryptedNotes);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -99,15 +98,6 @@ namespace FinalYearProject.Windows
 
             this.DialogResult = true;
             this.Close();
-        }
-
-        private string HashString(string plainText)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(plainText));
-                return BitConverter.ToString(bytes).Replace("-", "").ToLower();
-            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

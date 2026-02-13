@@ -96,16 +96,57 @@
                     <!-- Vault Items Panel -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ItemsControl x:Name="VaultItemsPanel">
+                            <!-- Use WrapPanel for tile layout -->
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border CornerRadius="12" Background="#2A2A40" Margin="10" Padding="15">
-                                        <Button Content="{Binding Title}"
-                                                FontSize="20"
-                                                Foreground="White"
-                                                Background="Transparent"
-                                                BorderThickness="0"
-                                                Click="VaultCard_Click"/>
-                                    </Border>
+                                    <Button Click="VaultCard_Click"
+                                            Background="#2A2A40"
+                                            BorderThickness="0"
+                                            Width="200" Height="200"
+                                            Margin="15"
+                                            Cursor="Hand">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border CornerRadius="12"
+                                                        Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="#2A2A40"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="FontSize" Value="20"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#3A3A60"/>
+                                                        <Setter Property="Effect">
+                                                            <Setter.Value>
+                                                                <DropShadowEffect Color="Black"
+                                                                                  BlurRadius="15"
+                                                                                  ShadowDepth="0"
+                                                                                  Opacity="0.5"/>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <TextBlock Text="{Binding Title}"
+                                                   TextWrapping="Wrap"
+                                                   TextAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Button>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

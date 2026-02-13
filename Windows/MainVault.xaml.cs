@@ -21,6 +21,14 @@ namespace FinalYearProject.Windows
             RefreshVaultItems();
         }
 
+        private void PasswordGenerator_Click(object sender, RoutedEventArgs e)
+        {
+            PasswordGenerator generatorWindow = new PasswordGenerator();
+            generatorWindow.Owner = this;
+            generatorWindow.ShowDialog(); // modal window so user must close it before returning
+        }
+
+
         private void AddNew_Click(object sender, RoutedEventArgs e)
         {
             AddEntryWindow addWindow = new AddEntryWindow(Username);
@@ -43,15 +51,17 @@ namespace FinalYearProject.Windows
             var entry = (sender as System.Windows.Controls.Button)?.DataContext as VaultEntry;
             if (entry != null)
             {
-                VaultUIHelper.ShowEntryDetails(entry);
+                ShowCard entryWindow = new ShowCard(entry);
+                entryWindow.Owner = this;
+                entryWindow.ShowDialog();
             }
         }
+
 
         // Sidebar placeholders
         private void Logins_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Logins placeholder — feature coming soon!", "Info");
         private void Bookmarks_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Bookmarks placeholder — feature coming soon!", "Info");
         private void Safenotes_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Safenotes placeholder — feature coming soon!", "Info");
-        private void PasswordGenerator_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Password Generator placeholder — feature coming soon!", "Info");
         private void Help_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Help placeholder — documentation will appear here.", "Info");
         private void TextBox_TextChanged(object sender, RoutedEventArgs e) { }
         private void Profile_Click(object sender, RoutedEventArgs e) => MessageBox.Show($"Profile placeholder — logged in as {Username}", "Info");
