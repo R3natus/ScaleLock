@@ -46,6 +46,25 @@ namespace FinalYearProject.Windows
             }
         }
 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show($"Delete '{_entry.Title}'?", "Confirm Delete",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                // Delete from DB using the logged-in username
+                VaultDataHelper.DeleteEntry(_entry, ((MainVault)Owner).Username);
+
+                // Refresh parent window
+                if (Owner is MainVault vaultWindow)
+                {
+                    vaultWindow.RefreshVaultItems();
+                }
+
+                MessageBox.Show("Entry deleted.", "Info");
+                this.Close();
+            }
+        }
+
         private void StartHideTimer(Action hideAction)
         {
             DispatcherTimer timer = new DispatcherTimer();

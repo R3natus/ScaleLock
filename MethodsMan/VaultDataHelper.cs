@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.IO;
+using System.Windows;
 
 namespace FinalYearProject.MethodsMan
 {
@@ -101,5 +102,31 @@ namespace FinalYearProject.MethodsMan
                 }
             }
         }
+
+        public static void DeleteEntry(VaultEntry entry, string username)
+        {
+            try
+            {
+                string dbFile = GetDbPath(username);
+
+                using (var connection = new SQLiteConnection($"Data Source={dbFile};Version=3;"))
+                {
+                    connection.Open();
+
+                    string query = "DELETE FROM VaultEntries WHERE Id = @Id";
+
+                    using (var cmd = new SQLiteCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", entry.Id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting entry: {ex.Message}", "Error");
+            }
+        }
+
     }
 }

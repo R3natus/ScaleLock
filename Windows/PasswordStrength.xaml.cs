@@ -29,13 +29,6 @@ namespace FinalYearProject.Windows
                 return;
             }
 
-            if (string.Equals(password, "password", StringComparison.OrdinalIgnoreCase))
-            {
-                MascotImage.Source = LoadMascot("hyperdragon.png");
-                FeedbackText.Text = "are you serious";
-                return;
-            }
-
             if (score < 3)
             {
                 MascotImage.Source = LoadMascot("Worried.png");

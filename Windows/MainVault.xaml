@@ -16,7 +16,6 @@
         <Border Grid.Column="0" Margin="15" CornerRadius="20" Background="#1A1A2E">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="220">
 
-                <!-- Add New button -->
                 <Border CornerRadius="12" Background="#00C853" Margin="0,0,0,40">
                     <Button Content="+ Add New"
                             Foreground="White"
@@ -27,57 +26,36 @@
                             Click="AddNew_Click"/>
                 </Border>
 
-                <Button Content="Logins"
-                        Background="Transparent" Foreground="White"
-                        FontSize="24" Height="50"
-                        HorizontalAlignment="Stretch"
-                        Margin="0,0,0,15"
-                        BorderThickness="0"
-                        Click="Logins_Click"/>
+                <Button Content="Logins" Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50" Margin="0,0,0,15"
+                        BorderThickness="0" Click="Logins_Click"/>
 
-                <Button Content="Bookmarks"
-                        Background="Transparent" Foreground="White"
-                        FontSize="24" Height="50"
-                        HorizontalAlignment="Stretch"
-                        Margin="0,0,0,15"
-                        BorderThickness="0"
-                        Click="Bookmarks_Click"/>
+                <Button Content="Bookmarks" Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50" Margin="0,0,0,15"
+                        BorderThickness="0" Click="Bookmarks_Click"/>
 
-                <Button Content="Safenotes"
-                        Background="Transparent" Foreground="White"
-                        FontSize="24" Height="50"
-                        HorizontalAlignment="Stretch"
-                        Margin="0,0,0,15"
-                        BorderThickness="0"
-                        Click="Safenotes_Click"/>
+                <Button Content="Safenotes" Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50" Margin="0,0,0,15"
+                        BorderThickness="0" Click="Safenotes_Click"/>
 
-                <Button Content="Password Generator"
-                        Background="Transparent" Foreground="White"
-                        FontSize="24" Height="50"
-                        HorizontalAlignment="Stretch"
-                        Margin="0,0,0,15"
-                        BorderThickness="0"
-                        Click="PasswordGenerator_Click"/>
+                <Button Content="Password Generator" Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50" Margin="0,0,0,15"
+                        BorderThickness="0" Click="PasswordGenerator_Click"/>
 
-                <Button Content="Help"
-                        Background="Transparent" Foreground="White"
+                <Button Content="Help" Background="Transparent" Foreground="White"
                         FontSize="24" Height="50"
-                        BorderThickness="0"
-                        Click="Help_Click"/>
+                        BorderThickness="0" Click="Help_Click"/>
             </StackPanel>
         </Border>
 
         <!-- Main Content -->
         <DockPanel Grid.Column="1" Margin="15">
-            <!-- Top bar -->
-            <Border DockPanel.Dock="Top" Background="#1A1A2E" CornerRadius="15" Height="70" Padding="10" Margin="0,0,0,15">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <!-- Search bar only -->
-                    <TextBox Grid.Column="0"
+            <!-- Top bar -->
+            <Border DockPanel.Dock="Top" Background="#1A1A2E"
+                    CornerRadius="15" Height="70" Padding="10" Margin="0,0,0,15">
+                <Grid>
+                    <TextBox x:Name="SearchBox"
                              Height="40"
                              Margin="10,0,10,0"
                              FontSize="16"
@@ -86,74 +64,92 @@
                              Background="#2A2A40"
                              Foreground="White"
                              BorderThickness="0"
-                             Text="Search your vault..." TextChanged="TextBox_TextChanged"/>
+                             TextChanged="SearchBox_TextChanged"/>
                 </Grid>
             </Border>
 
             <!-- Vault content -->
             <Grid>
                 <Border CornerRadius="20" Padding="20" Background="#1A1A2E">
-                    <!-- Vault Items Panel -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ItemsControl x:Name="VaultItemsPanel">
-                            <!-- Use WrapPanel for tile layout -->
+
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal" />
+                                    <WrapPanel Orientation="Horizontal"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Click="VaultCard_Click"
-                                            Background="#2A2A40"
-                                            BorderThickness="0"
-                                            Width="200" Height="200"
-                                            Margin="15"
-                                            Cursor="Hand">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border CornerRadius="12"
-                                                        Background="{TemplateBinding Background}">
-                                                    <ContentPresenter HorizontalAlignment="Center"
-                                                                      VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Background" Value="#2A2A40"/>
-                                                <Setter Property="Foreground" Value="White"/>
-                                                <Setter Property="FontSize" Value="20"/>
-                                                <Setter Property="FontWeight" Value="Bold"/>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#3A3A60"/>
-                                                        <Setter Property="Effect">
-                                                            <Setter.Value>
-                                                                <DropShadowEffect Color="Black"
-                                                                                  BlurRadius="15"
-                                                                                  ShadowDepth="0"
-                                                                                  Opacity="0.5"/>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                        <TextBlock Text="{Binding Title}"
-                                                   TextWrapping="Wrap"
-                                                   TextAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   HorizontalAlignment="Center"/>
-                                    </Button>
+                                    <Grid Width="200" Height="200" Margin="15">
+
+                                        <!-- DELETE BUTTON -->
+                                        <Button Content="✕"
+                                                Width="28" Height="28"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Top"
+                                                Margin="0,5,5,0"
+                                                Background="#B00020"
+                                                Foreground="White"
+                                                FontWeight="Bold"
+                                                BorderThickness="0"
+                                                Cursor="Hand"
+                                                Click="DeleteCard_Click"/>
+
+                                        <!-- MAIN CARD -->
+                                        <Button Click="VaultCard_Click"
+                                                Background="#2A2A40"
+                                                BorderThickness="0"
+                                                Cursor="Hand">
+
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border CornerRadius="12"
+                                                            Background="{TemplateBinding Background}">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background" Value="#2A2A40"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                    <Setter Property="FontSize" Value="20"/>
+                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#3A3A60"/>
+                                                            <Setter Property="Effect">
+                                                                <Setter.Value>
+                                                                    <DropShadowEffect Color="Black"
+                                                                                      BlurRadius="15"
+                                                                                      ShadowDepth="0"
+                                                                                      Opacity="0.5"/>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+
+                                            <TextBlock Text="{Binding Title}"
+                                                       TextWrapping="Wrap"
+                                                       TextAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"/>
+                                        </Button>
+
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
+
                         </ItemsControl>
                     </ScrollViewer>
                 </Border>
 
-                <!-- Floating Help button -->
                 <Button Content="?"
                         Width="60" Height="60"
                         Background="#00C853"
@@ -168,22 +164,26 @@
             </Grid>
         </DockPanel>
 
-        <!-- Username button with dropdown menu -->
+        <!-- Username button -->
         <Border Grid.Column="1" CornerRadius="12" Background="#00C853"
                 HorizontalAlignment="Right" VerticalAlignment="Top"
                 Margin="0,20,40,0" Width="200" Height="55">
+
             <Button Content="{Binding Username}"
                     Foreground="White"
                     FontSize="18"
                     HorizontalAlignment="Stretch"
                     BorderThickness="0"
                     Background="Transparent">
+
                 <Button.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Log Out" Click="Logout_Click"/>
                     </ContextMenu>
                 </Button.ContextMenu>
+
             </Button>
         </Border>
+
     </Grid>
 </Window>
