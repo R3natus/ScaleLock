@@ -118,5 +118,10 @@ namespace FinalYearProject.Windows
             Application.Current.MainWindow = loginWindow;
             this.Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

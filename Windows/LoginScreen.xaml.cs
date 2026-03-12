@@ -52,7 +52,6 @@ namespace FinalYearProject.Windows
                         {
                             MessageBox.Show("Login successful!");
 
-                            // ✅ Close LoginScreen and open MainVault with the authenticated username
                             MainVault vaultWindow = new MainVault(username);
                             vaultWindow.Show();
                             this.Close();

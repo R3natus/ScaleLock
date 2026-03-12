@@ -4,7 +4,7 @@
         Title="ScaleLock Vault"
         Height="800" Width="1200"
         WindowStartupLocation="CenterScreen"
-        Background="#0C0512">
+        Background="#140F0F">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,25 +26,18 @@
                             Click="AddNew_Click"/>
                 </Border>
 
-                <Button Content="Logins" Background="Transparent" Foreground="White"
-                        FontSize="24" Height="50" Margin="0,0,0,15"
-                        BorderThickness="0" Click="Logins_Click"/>
-
                 <Button Content="Bookmarks" Background="Transparent" Foreground="White"
                         FontSize="24" Height="50" Margin="0,0,0,15"
                         BorderThickness="0" Click="Bookmarks_Click"/>
 
-                <Button Content="Safenotes" Background="Transparent" Foreground="White"
-                        FontSize="24" Height="50" Margin="0,0,0,15"
-                        BorderThickness="0" Click="Safenotes_Click"/>
-
-                <Button Content="Password Generator" Background="Transparent" Foreground="White"
+                <Button Content="Password Checker" Background="Transparent" Foreground="White"
                         FontSize="24" Height="50" Margin="0,0,0,15"
                         BorderThickness="0" Click="PasswordGenerator_Click"/>
 
-                <Button Content="Help" Background="Transparent" Foreground="White"
-                        FontSize="24" Height="50"
-                        BorderThickness="0" Click="Help_Click"/>
+
+                <Button Content="Settings" Background="Transparent" Foreground="White"
+                        FontSize="24" Height="50" Margin="0,0,0,15"
+                        BorderThickness="0" Click="PasswordGenerator_Click"/>
             </StackPanel>
         </Border>
 
@@ -99,7 +92,7 @@
 
                                         <!-- MAIN CARD -->
                                         <Button Click="VaultCard_Click"
-                                                Background="#2A2A40"
+                                                Background="#1F1919"
                                                 BorderThickness="0"
                                                 Cursor="Hand">
 
@@ -174,7 +167,7 @@
                     FontSize="18"
                     HorizontalAlignment="Stretch"
                     BorderThickness="0"
-                    Background="Transparent">
+                    Background="Transparent" Click="Button_Click">
 
                 <Button.ContextMenu>
                     <ContextMenu>
