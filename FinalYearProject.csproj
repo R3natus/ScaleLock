@@ -12,6 +12,14 @@
 	<ItemGroup>
 	  <None Remove="Fonts\SF Pro Display Regular.OTF" />
 	  <None Remove="Fonts\SF Pro.OTF" />
+	  <None Remove="Windows\Assets\img_customer.png" />
+	  <None Remove="Windows\Assets\img_home.png" />
+	  <None Remove="Windows\Assets\img_product.png" />
+	  <None Remove="Windows\Assets\img_setting.png" />
+	  <None Remove="Windows\Assets\img_shipment.png" />
+	  <None Remove="Windows\Assets\setting_page.png" />
+	  <None Remove="Windows\Assets\shutdown_def.png" />
+	  <None Remove="Windows\Assets\shutdown_mo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,8 +40,74 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Windows\Assets\img_customer.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\img_home.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\img_product.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\img_setting.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\img_shipment.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\setting_page.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\shutdown_def.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\shutdown_mo.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Windows\Assets\customer_page.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\Happy.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\home.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\home_page.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\hyperdragon.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\img_order.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\img_transaction.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\Investigating.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Windows\Assets\mascot.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\order_page.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\product_page.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\shipment_page.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\transaction_page.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Windows\Assets\Worried.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
 
