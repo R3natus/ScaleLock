@@ -23,18 +23,18 @@ namespace FinalYearProject.Windows
             authDbPath = Path.Combine(scaleLockDir, "ScaleLockAuth.db");
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for dragging the window around
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for minimizing the window
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for closing the window
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
@@ -44,6 +44,15 @@ namespace FinalYearProject.Windows
             using (SHA256 sha = SHA256.Create())
             {
                 byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
+        }
+
+        private string HashSecretAnswer(string answer)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(answer));
                 return Convert.ToBase64String(bytes);
             }
         }
@@ -99,13 +108,14 @@ namespace FinalYearProject.Windows
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@PasswordHash", HashPassword(password));
                     command.Parameters.AddWithValue("@SecretQuestion", secretQuestion);
-                    command.Parameters.AddWithValue("@SecretAnswer", secretAnswer);
+                    command.Parameters.AddWithValue("@SecretAnswer", HashSecretAnswer(secretAnswer));
 
                     try
                     {
                         command.ExecuteNonQuery();
 
-                        var result = await UserConsentVerifier.RequestVerificationAsync("Verify with Windows Hello to finish account creation");
+                        var result = await UserConsentVerifier.RequestVerificationAsync(
+                            "Verify with Windows Hello to finish account creation");
 
                         if (result == UserConsentVerificationResult.Verified)
                         {

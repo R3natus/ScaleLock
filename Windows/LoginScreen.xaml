@@ -38,7 +38,6 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -129,9 +128,9 @@
                 </Grid>
 
                 <StackPanel
-                            Grid.Row="1"
-                            Orientation="Vertical"
-                            Margin="184,35,174,0">
+                    Grid.Row="1"
+                    Orientation="Vertical"
+                    Margin="184,35,174,0">
 
                     <Image Source="/Windows/Assets/Logo.png"
                            Width="100" Height="100"/>
@@ -198,6 +197,18 @@
                                         AlignmentX="Left"/>
                         </PasswordBox.Background>
                     </PasswordBox>
+
+                    <Button Content="Forgot my Password"
+                            Click="ForgotPassword_Click"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="#CFCFCF"
+                            FontFamily="Montserrat"
+                            FontSize="12"
+                            HorizontalAlignment="Left"
+                            Padding="0"
+                            Margin="0,5,0,0"
+                            Cursor="Hand"/>
 
                     <!-- LOGIN BUTTON -->
                     <Button x:Name="btnLogin"

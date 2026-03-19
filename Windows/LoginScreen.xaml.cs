@@ -91,5 +91,11 @@ namespace FinalYearProject.Windows
             var registerWindow = new CreateAccount();
             registerWindow.ShowDialog();
         }
+        private void ForgotPassword_Click(object sender, RoutedEventArgs e)
+        {
+            var forgotWindow = new ForgotPassword();
+            forgotWindow.ShowDialog();
+        }
+
     }
 }

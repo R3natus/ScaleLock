@@ -24,11 +24,11 @@ namespace FinalYearProject
                     if (result == UserConsentVerificationResult.Verified)
                         MessageBox.Show("✅ Windows Hello verification successful!");
                     else
-                        MessageBox.Show("❌ Verification failed: " + result);
+                        MessageBox.Show("Verification failed!" + result);
                 }
                 else
                 {
-                    MessageBox.Show("⚠️ Windows Hello is not available on this device.");
+                    MessageBox.Show("Windows Hello is not functional at the moment.");
                 }
             }
             catch (System.Exception ex)

@@ -105,5 +105,10 @@ namespace FinalYearProject.Windows
             this.DialogResult = false;
             this.Close();
         }
+
+        private void NotesBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
     }
 }
