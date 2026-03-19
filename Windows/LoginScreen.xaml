@@ -26,15 +26,15 @@
                     <GradientStop Color="#2A2D34" Offset="0"/>
                     <GradientStop Color="#3A3E47" Offset="0.45"/>
                     <GradientStop Color="#4A4F5A" Offset="0.75"/>
-                    <GradientStop Color="#5A606D" Offset="1"/>
+                    <GradientStop Color="#E6B1DA" Offset="1"/>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="#1E1F24" Offset="0"/>
+                    <GradientStop Color="#73005A" Offset="0"/>
                     <GradientStop Color="#2A2C33" Offset="0.5"/>
-                    <GradientStop Color="#353842" Offset="1"/>
+                    <GradientStop Color="#1F1F1F" Offset="2"/>
                 </LinearGradientBrush>
             </Border.Background>
 
@@ -146,10 +146,10 @@
                     <!-- Username -->
                     <TextBlock Text="Username"
                                Foreground="White"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               Margin="0,35,0,0"/>
+                               Margin="0,40,0,0" Height="18" Width="66"/>
 
                     <TextBox x:Name="UsernameBox"
                              FontSize="13"
@@ -174,10 +174,10 @@
                     <!-- Password -->
                     <TextBlock Text="Password"
                                Foreground="White"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               Margin="0,15,0,0"/>
+                               Margin="0,15,0,0" Width="62" Height="20"/>
 
                     <PasswordBox x:Name="PasswordBox"
                                  FontSize="13"

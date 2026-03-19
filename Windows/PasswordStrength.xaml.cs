@@ -14,7 +14,7 @@ namespace FinalYearProject.Windows
 
             // Default mascot state (Investigating)
             MascotImage.Source = LoadMascot("Investigating.png");
-            FeedbackText.Text = "Let's see what you've got.";
+            FeedbackText.Text = "Please enter your password!";
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -25,14 +25,14 @@ namespace FinalYearProject.Windows
             if (string.IsNullOrEmpty(password))
             {
                 MascotImage.Source = LoadMascot("Investigating.png");
-                FeedbackText.Text = "Let's see what you've got!";
+                FeedbackText.Text = "Please enter your password!";
                 return;
             }
 
             if (score < 3)
             {
                 MascotImage.Source = LoadMascot("Worried.png");
-                FeedbackText.Text = "...This is horrible.";
+                FeedbackText.Text = "I'm sorry, this does not seem like a reliable password!";
             }
             else if (score < 6)
             {
@@ -60,8 +60,6 @@ namespace FinalYearProject.Windows
 
             return score;
         }
-
-
 
         private BitmapImage LoadMascot(string fileName)
         {

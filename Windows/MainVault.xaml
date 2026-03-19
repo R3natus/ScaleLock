@@ -5,173 +5,279 @@
         Height="600" 
         Width="850"
         WindowStartupLocation="CenterScreen"
-        Background="#212529">
-    
+        Background="#212529"
+        WindowStyle="None"
+        AllowsTransparency="False"
+        MouseDown="Window_MouseDown">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
-        <Border Grid.Column="0" CornerRadius="20" Background="#272B2F">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="270">
+        <!-- Top Bar -->
+        <Border Height="30"
+                VerticalAlignment="Top"
+                Background="#1F1F1F"
+                CornerRadius="0,0,10,10">
 
-                <Button Background="Transparent" BorderThickness="0" Click="AddNew_Click" Height="50" Margin="0,0,0,20">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Source="Assets/img_home.png" Width="28" Height="28" Margin="0,0,10,0"/>
-                        <TextBlock Text="Add New" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
-                    </StackPanel>
+            <Grid Height="30" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- App Title -->
+                <TextBlock Text="ScaleLock Vault"
+                           Foreground="DarkGray"
+                           FontSize="10"
+                           FontFamily="Montserrat"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"/>
+
+                <!-- Minimize -->
+                <Button x:Name="btnMinimize"
+                        Grid.Column="1"
+                        Content="-"
+                        BorderThickness="0"
+                        Foreground="White"
+                        FontSize="16"
+                        Cursor="Hand"
+                        Click="btnMinimize_Click">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#28AEED"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#278BEF"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18"
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
 
-                <Button Background="Transparent" BorderThickness="0" Click="Bookmarks_Click" Height="50" Margin="0,0,0,15">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Source="Assets/img_customer.png" Width="28" Height="28" Margin="0,0,10,0"/>
-                        <TextBlock Text="Profile" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+                <!-- Close -->
+                <Button x:Name="btnClose"
+                        Grid.Column="2"
+                        Content="X"
+                        BorderThickness="0"
+                        Foreground="White"
+                        FontSize="12"
+                        Cursor="Hand"
+                        Click="btnClose_Click">
 
-                <Button Background="Transparent" BorderThickness="0" Click="PasswordGenerator_Click" Height="50" Margin="0,0,0,15">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Source="Assets/img_product.png" Width="28" Height="28" Margin="0,0,10,0"/>
-                        <TextBlock Text="Password Checker" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#FF0000"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#C62DAE"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
 
-                <!-- Settings -->
-                <Button Background="Transparent" BorderThickness="0" Click="Help_Click" Height="50" Margin="0,0,0,15">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Image Source="Assets/img_setting.png" Width="28" Height="28" Margin="0,0,10,0"/>
-                        <TextBlock Text="Settings" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
-                    </StackPanel>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18"
+                                    CornerRadius="9"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
-
-            </StackPanel>
+            </Grid>
         </Border>
 
-        <!-- Main Content -->
-        <DockPanel Grid.Column="1" Margin="15">
+        <!-- =======================
+             MAIN LAYOUT
+        ======================== -->
 
-            <!-- Top bar -->
-            <Border DockPanel.Dock="Top" Background="#272B2F"
-                    CornerRadius="15" Height="70" Padding="10" Margin="0,0,0,15">
-                <Grid>
-                    <TextBox x:Name="SearchBox"
-                             Height="40"
-                             Margin="10,0,10,0"
-                             FontSize="16"
-                             VerticalAlignment="Center"
-                             Padding="10"
-                             Background="#2e2f30"
-                             Foreground="White"
-                             BorderThickness="0"
-                             TextChanged="SearchBox_TextChanged"/>
-                </Grid>
+        <Grid Margin="0,30,0,0">
+            <!-- Push content below top bar -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT NAV PANEL -->
+            <Border Grid.Column="0" CornerRadius="20" Background="#272B2F">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="270">
+
+                    <Button Background="Transparent" BorderThickness="0" Click="AddNew_Click" Height="50" Margin="0,0,0,20">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="Assets/img_home.png" Width="28" Height="28" Margin="0,0,10,0"/>
+                            <TextBlock Text="Add New" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Background="Transparent" BorderThickness="0" Click="Profile_Click" Height="50" Margin="0,0,0,15">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="Assets/img_customer.png" Width="28" Height="28" Margin="0,0,10,0"/>
+                            <TextBlock Text="Profile" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Background="Transparent" BorderThickness="0" Click="PasswordGenerator_Click" Height="50" Margin="0,0,0,15">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="Assets/img_product.png" Width="28" Height="28" Margin="0,0,10,0"/>
+                            <TextBlock Text="Password Checker" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Background="Transparent" BorderThickness="0" Click="Settings_Click" Height="50" Margin="0,0,0,15">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="Assets/img_setting.png" Width="28" Height="28" Margin="0,0,10,0"/>
+                            <TextBlock Text="Settings" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Background="Transparent" BorderThickness="0" Click="Help_Click" Height="50" Margin="0,0,0,15">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Image Source="Assets/img_help.png" Width="28" Height="28" Margin="0,0,10,0"/>
+                            <TextBlock Text="Help" Foreground="White" FontSize="22" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
             </Border>
 
-            <!-- Vault content -->
-            <Grid>
-                <Border CornerRadius="20" Padding="20" Background="#212529">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ItemsControl x:Name="VaultItemsPanel">
+            <!-- RIGHT CONTENT AREA -->
+            <DockPanel Grid.Column="1" Margin="15">
 
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="200" Height="200" Margin="15">
-
-                                        <!-- DELETE BUTTON -->
-                                        <Button Content="✕"
-                                                Width="28" Height="28"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Top"
-                                                Margin="0,5,5,0"
-                                                Background="#B00020"
-                                                Foreground="White"
-                                                FontWeight="Bold"
-                                                BorderThickness="0"
-                                                Cursor="Hand"
-                                                Click="DeleteCard_Click"/>
-
-                                        <!-- MAIN CARD -->
-                                        <Button Click="VaultCard_Click"
-                                                Background="#1F1919"
-                                                BorderThickness="0"
-                                                Cursor="Hand">
-
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border CornerRadius="12"
-                                                            Background="{TemplateBinding Background}">
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                                                          VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Button.Template>
-
-                                            <Button.Style>
-                                                <Style TargetType="Button">
-                                                    <Setter Property="Background" Value="#2A2A40"/>
-                                                    <Setter Property="Foreground" Value="White"/>
-                                                    <Setter Property="FontSize" Value="20"/>
-                                                    <Setter Property="FontWeight" Value="Bold"/>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#3A3A60"/>
-                                                            <Setter Property="Effect">
-                                                                <Setter.Value>
-                                                                    <DropShadowEffect Color="Black"
-                                                                                      BlurRadius="15"
-                                                                                      ShadowDepth="0"
-                                                                                      Opacity="0.5"/>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-
-                                            <TextBlock Text="{Binding Title}"
-                                                       TextWrapping="Wrap"
-                                                       TextAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       HorizontalAlignment="Center"/>
-                                        </Button>
-
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-
-                        </ItemsControl>
-                    </ScrollViewer>
+                <!-- SEARCH BAR -->
+                <Border DockPanel.Dock="Top" Background="#272B2F"
+                        CornerRadius="15" Height="70" Padding="10" Margin="0,0,0,15">
+                    <Grid>
+                        <TextBox x:Name="SearchBox"
+                                 Height="40"
+                                 Margin="10,0,10,0"
+                                 FontSize="16"
+                                 VerticalAlignment="Center"
+                                 Padding="10"
+                                 Background="#2e2f30"
+                                 Foreground="White"
+                                 BorderThickness="0"
+                                 TextChanged="SearchBox_TextChanged"/>
+                    </Grid>
                 </Border>
 
-                <!-- Bottom-right shutdown button -->
-                <Button Width="60"
-        Height="60"
-        Background="Transparent"
-        BorderThickness="0"
-        HorizontalAlignment="Right"
-        VerticalAlignment="Bottom"
-        Margin="20"
-        Click="Logout_Click">
-                    <Image Source="Assets/shutdown_def.png"
-           Width="40"
-           Height="40">
-                        <Image.Effect>
-                            <DropShadowEffect/>
-                        </Image.Effect>
-                    </Image>
-                </Button>
+                <!-- VAULT CONTENT -->
+                <Grid>
+                    <Border CornerRadius="20" Padding="20" Background="#212529">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="VaultItemsPanel">
 
-            </Grid>
-        </DockPanel>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
 
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="200" Height="200" Margin="15">
+
+                                            <!-- DELETE BUTTON -->
+                                            <Button Content="✕"
+                                                    Width="28" Height="28"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Top"
+                                                    Margin="0,5,5,0"
+                                                    Background="#B00020"
+                                                    Foreground="White"
+                                                    FontWeight="Bold"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand"
+                                                    Click="DeleteCard_Click"/>
+
+                                            <!-- MAIN CARD -->
+                                            <Button Click="VaultCard_Click"
+                                                    Background="#1F1919"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand">
+
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border CornerRadius="12"
+                                                                Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                              VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Setter Property="Background" Value="#2A2A40"/>
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                        <Setter Property="FontSize" Value="20"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#3A3A60"/>
+                                                                <Setter Property="Effect">
+                                                                    <Setter.Value>
+                                                                        <DropShadowEffect Color="Black"
+                                                                                          BlurRadius="15"
+                                                                                          ShadowDepth="0"
+                                                                                          Opacity="0.5"/>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+
+                                                <TextBlock Text="{Binding Title}"
+                                                           TextWrapping="Wrap"
+                                                           TextAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Center"/>
+                                            </Button>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+
+                    <!-- LOGOUT BUTTON -->
+                    <Button Width="60"
+                            Height="60"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="20"
+                            Click="Logout_Click">
+                        <Image Source="Assets/shutdown_def.png"
+                               Width="40"
+                               Height="40">
+                            <Image.Effect>
+                                <DropShadowEffect/>
+                            </Image.Effect>
+                        </Image>
+                    </Button>
+
+                </Grid>
+            </DockPanel>
+        </Grid>
 
     </Grid>
 </Window>

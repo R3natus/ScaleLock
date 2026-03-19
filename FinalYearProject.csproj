@@ -14,7 +14,9 @@
 	  <None Remove="Fonts\SF Pro.OTF" />
 	  <None Remove="Windows\Assets\back-image.jpg" />
 	  <None Remove="Windows\Assets\back-image.png" />
+	  <None Remove="Windows\Assets\back-image2.jpg" />
 	  <None Remove="Windows\Assets\img_customer.png" />
+	  <None Remove="Windows\Assets\img_help.png" />
 	  <None Remove="Windows\Assets\img_home.png" />
 	  <None Remove="Windows\Assets\img_product.png" />
 	  <None Remove="Windows\Assets\img_setting.png" />
@@ -31,10 +33,19 @@
 	  <Resource Include="Windows\Assets\back-image.jpg">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Windows\Assets\back-image2.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\img_help.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	  <Resource Include="Windows\Assets\key-icon.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Windows\Assets\logo.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Windows\Assets\answer-icon.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Windows\Assets\user-icon.png">

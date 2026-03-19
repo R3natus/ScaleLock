@@ -3,46 +3,292 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Create Account"
         Height="600" Width="1000"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
 
-    <Grid>
-        <Rectangle>
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#09001C" Offset="0.8"/>
-                    <GradientStop Color="#005C09" Offset="1.0"/>
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="/Windows/Assets/back-image2.jpg"
+                        Stretch="UniformToFill"/>
+        </Border.Background>
+
+        <Border CornerRadius="10"
+                BorderThickness="2"
+                Opacity="0.90">
+
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#2A2D34" Offset="0"/>
+                    <GradientStop Color="#3A3E47" Offset="0.45"/>
+                    <GradientStop Color="#4A4F5A" Offset="0.75"/>
+                    <GradientStop Color="#5A606D" Offset="1"/>
                 </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+            </Border.BorderBrush>
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
-            <TextBlock Text="Username" FontSize="20" Foreground="White" Margin="0 0 0 5"/>
-            <TextBox x:Name="NewUsernameBox" FontSize="22" Height="40" Margin="0 0 0 15"/>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#5C0073" Offset="0"/>
+                    <GradientStop Color="#2A2C33" Offset="0.5"/>
+                    <GradientStop Color="#353842" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
 
-            <TextBlock Text="Password (Must be >6 characters!)" FontSize="20" Foreground="White" Margin="0 0 0 5"/>
-            <PasswordBox x:Name="NewPasswordBox" FontSize="22" Height="40" Margin="0 0 0 15"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <TextBlock Text="Confirm Password" FontSize="20" Foreground="White" Margin="0 0 0 5"/>
-            <PasswordBox x:Name="ConfirmPasswordBox" FontSize="22" Height="40" Margin="0 0 0 15"/>
+                <!-- ============================
+                     TOP BAR (Matches MainVault)
+                ============================= -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Secret Question" FontSize="20" Foreground="White" Margin="0 0 0 5"/>
-            <ComboBox x:Name="SecretQuestionBox" FontSize="20" Height="40" Margin="0 0 0 15">
-                <ComboBoxItem Content="What is your favorite color?"/>
-                <ComboBoxItem Content="What is your pet's name?"/>
-                <ComboBoxItem Content="What city were you born in?"/>
-                <ComboBoxItem Content="What are you here for, really>"/>
-                <ComboBoxItem Content="What's your favorite food?"/>
-            </ComboBox>
+                    <TextBlock Text="Create Account"
+                               Foreground="DarkGray"
+                               FontSize="10"
+                               FontFamily="Montserrat"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
 
-            <TextBlock Text="Answer" FontSize="20" Foreground="White" Margin="0 0 0 5"/>
-            <TextBox x:Name="SecretAnswerBox" FontSize="22" Height="40" Margin="0 0 0 20"/>
+                    <!-- Minimize -->
+                    <Button x:Name="btnMinimize"
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                <Button Content="Create Account" Width="200" Height="50" Background="Green"
-                        FontSize="20" Foreground="White" Click="CreateAccount_Click" Margin="0 0 10 0"/>
-                <Button Content="Close" Width="200" Height="50" Background="Gray"
-                        FontSize="20" Foreground="White" Click="Cancel_Click"/>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28AEED"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Close -->
+                    <Button x:Name="btnClose"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="12"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#FF0000"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C62DAE"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+
+                <!-- ============================
+                     MAIN CONTENT
+                ============================= -->
+                <StackPanel Grid.Row="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Width="400">
+
+                    <!-- Title -->
+                    <TextBlock Text="Create Account"
+                               Foreground="White"
+                               FontSize="28"
+                               FontFamily="Montserrat"
+                               FontWeight="Medium"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,20"/>
+
+                    <!-- Username -->
+                    <TextBlock Text="Username"
+                               Foreground="White"
+                               FontSize="14"
+                               FontFamily="Montserrat" Width="62"/>
+
+                    <TextBox x:Name="NewUsernameBox"
+                             FontSize="14"
+                             FontFamily="Montserrat"
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="32"
+                             Margin="0,5,0,15"
+                             Padding="25,0,0,0">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/Windows/Assets/user-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <!-- Password -->
+                    <TextBlock Text="Password"
+                               Foreground="White"
+                               FontSize="14"
+                               FontFamily="Montserrat" Height="16" Width="59"/>
+
+                    <PasswordBox x:Name="NewPasswordBox"
+                                 FontSize="14"
+                                 FontFamily="Montserrat"
+                                 Foreground="White"
+                                 CaretBrush="LightGray"
+                                 BorderBrush="DarkGray"
+                                 BorderThickness="0,0,0,2"
+                                 Height="32"
+                                 Margin="0,5,0,15"
+                                 Padding="25,0,0,0">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="/Windows/Assets/key-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+
+                    <!-- Confirm Password -->
+                    <TextBlock Text="Confirm Password"
+                               Foreground="White"
+                               FontSize="14"
+                               FontFamily="Montserrat" Width="112"/>
+
+                    <PasswordBox x:Name="ConfirmPasswordBox"
+                                 FontSize="14"
+                                 FontFamily="Montserrat"
+                                 Foreground="White"
+                                 CaretBrush="LightGray"
+                                 BorderBrush="DarkGray"
+                                 BorderThickness="0,0,0,2"
+                                 Height="32"
+                                 Margin="0,5,0,15"
+                                 Padding="25,0,0,0">
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="/Windows/Assets/key-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+
+                    <!-- Secret Question -->
+                    <TextBlock Text="Secret Question"
+                               Foreground="White"
+                               FontSize="14"
+                               FontFamily="Montserrat" Width="98" Height="22"/>
+
+                    <ComboBox x:Name="SecretQuestionBox"
+                              FontSize="14"
+                              FontFamily="Montserrat"
+                              Height="40"
+                              Margin="0,5,0,15"
+                              Background="#2A2C33"
+                              Foreground="Black"
+                              BorderThickness="0"
+                              Padding="10">
+
+                        <ComboBoxItem Content="What is your favorite color?"/>
+                        <ComboBoxItem Content="What is your pet's name?"/>
+                        <ComboBoxItem Content="What city were you born in?"/>
+                        <ComboBoxItem Content="What are you here for, really?"/>
+                        <ComboBoxItem Content="What's your favorite food?"/>
+                    </ComboBox>
+
+                    <!-- Secret Answer -->
+                    <TextBlock Text="Answer"
+                               Foreground="White"
+                               FontSize="14"
+                               FontFamily="Montserrat" Height="20" Width="47"/>
+
+                    <TextBox x:Name="SecretAnswerBox"
+                             FontSize="14"
+                             FontFamily="Montserrat"
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="32"
+                             Margin="0,5,0,25"
+                             Padding="25,0,0,0">
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="Assets/answer-icon.png"
+                                        Stretch="None"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+                    </TextBox>
+
+                    <!-- Buttons -->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,10,0,0">
+
+                        <Button Content="Create Account"
+                                Width="180" Height="45"
+                                Background="#28AEED"
+                                Foreground="White"
+                                FontSize="14"
+                                FontFamily="Montserrat"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="CreateAccount_Click"
+                                Margin="0,0,10,0"/>
+
+                        <Button Content="Cancel"
+                                Width="180" Height="45"
+                                Background="#595959"
+                                Foreground="White"
+                                FontSize="14"
+                                FontFamily="Montserrat"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="Cancel_Click"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </Border>
 </Window>

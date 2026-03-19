@@ -38,7 +38,7 @@ namespace FinalYearProject.Windows
             ";
             command.ExecuteNonQuery();
 
-            MessageBox.Show("✅ Users and Vault tables created.");
+            MessageBox.Show("We're in, baby!");
         }
     }
 }

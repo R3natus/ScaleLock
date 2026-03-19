@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Windows.Security.Credentials.UI;
 
 namespace FinalYearProject.Windows
@@ -20,6 +21,22 @@ namespace FinalYearProject.Windows
             string scaleLockDir = Path.Combine(appDataPath, "ScaleLock");
             Directory.CreateDirectory(scaleLockDir);
             authDbPath = Path.Combine(scaleLockDir, "ScaleLockAuth.db");
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for dragging the window around
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for minimizing the window
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for closing the window
+        {
+            Application.Current.Shutdown();
         }
 
         private string HashPassword(string password)

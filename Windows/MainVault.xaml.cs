@@ -2,16 +2,17 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using FinalYearProject.MethodsMan;
 
 namespace FinalYearProject.Windows
 {
     public partial class MainVault : Window
     {
-        public string Username { get; set; }
+        public string Username { get; set; } // Getting username (From logging in)
 
-        private ObservableCollection<VaultEntry> AllVaultEntries { get; set; }
-        public ObservableCollection<VaultEntry> VaultEntries { get; set; }
+        private ObservableCollection<VaultEntry> AllVaultEntries { get; set; } // CALL ENTRIES
+        public ObservableCollection<VaultEntry> VaultEntries { get; set; } // CALL ENTRIES
 
         public MainVault(string createdUsername)
         {
@@ -22,6 +23,22 @@ namespace FinalYearProject.Windows
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             RefreshVaultItems();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for dragging the window around
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for minimizing the window
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e) // Copy and pasted from LoginScreen.xaml.cs for closing the window
+        {
+            Application.Current.Shutdown();
         }
 
         private void PasswordGenerator_Click(object sender, RoutedEventArgs e)
@@ -95,14 +112,9 @@ namespace FinalYearProject.Windows
                 VaultEntries.Add(item);
         }
 
-        private void Logins_Click(object sender, RoutedEventArgs e) =>
-            MessageBox.Show("Logins placeholder — feature coming soon!", "Info");
 
-        private void Bookmarks_Click(object sender, RoutedEventArgs e) =>
+        private void Settings_Click(object sender, RoutedEventArgs e) =>
             MessageBox.Show("Bookmarks placeholder — feature coming soon!", "Info");
-
-        private void Safenotes_Click(object sender, RoutedEventArgs e) =>
-            MessageBox.Show("Safenotes placeholder — feature coming soon!", "Info");
 
         private void Help_Click(object sender, RoutedEventArgs e) =>
             MessageBox.Show("Help placeholder — documentation will appear here.", "Info");
